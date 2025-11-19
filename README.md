@@ -16,8 +16,7 @@ npm install
 
 ### 2. Create a `.env` file
 
-Copy and paste the following, keeping **http://localhost:3000** exactly as is.  
-All other values have been replaced with safe random placeholders.
+Be sure to update with your own cloud resource values.
 
 ```env
 NODE_API_BASE_URL=http://localhost:3000
