@@ -1,0 +1,15 @@
+# Start by ignoring everything
+*
+
+# Then allow what's needed for the build
+!.next/
+!public/
+!node_modules/
+!package.json
+!package-lock.json
+!next.config.js
+!next.config.ts
+!tsconfig.json
+!.env
+!Dockerfile
+
