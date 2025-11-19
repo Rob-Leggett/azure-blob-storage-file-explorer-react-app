@@ -81,6 +81,12 @@ npm run build
 npm start
 ```
 
+## 📦 Test
+
+```bash
+npm run test
+```
+
 ---
 
 ## 📄 Licence
