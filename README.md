@@ -1,5 +1,7 @@
 # azure-blob-storage-file-explorer-react-app
 
+[![License](https://img.shields.io/github/license/Rob-Leggett/azure-blob-storage-file-explorer-react-app)](LICENSE) [![Node.js 26](https://img.shields.io/badge/Node.js-26-5FA04E?logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Next.js 16.4](https://img.shields.io/badge/Next.js-16.4-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/) [![React 19.3](https://img.shields.io/badge/React-19.3-61DAFB?logo=react&logoColor=white)](https://react.dev/) [![TypeScript 6.0](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Tailwind CSS 4.3](https://img.shields.io/badge/Tailwind%20CSS-4.3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
 React / Next.js / Tailwind – Azure Blob Storage File Explorer
 
 This project provides a simple file‑explorer UI for Azure Blob Storage, with Entra ID authentication and API routes running at **http://localhost:3000**.
