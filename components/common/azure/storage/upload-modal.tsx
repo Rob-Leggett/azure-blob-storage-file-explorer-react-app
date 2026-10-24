@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/common/ui/dialog'
 import { Button } from '@/components/common/ui/button'
 import { Input } from '@/components/common/ui/input'
@@ -28,11 +28,13 @@ export function UploadModal({ open, onOpenChange, defaultBase, onUploaded }: Pro
   const [busy, setBusy] = useState(false)
 
   // 🪄 Automatically reset to the current prefix whenever modal opens
-  useEffect(() => {
-    if (open) {
-      setBase(defaultBase || '')
-    }
-  }, [open, defaultBase])
+  const [prevOpen, setPrevOpen] = useState(open)
+  const [prevDefaultBase, setPrevDefaultBase] = useState(defaultBase)
+  if (open !== prevOpen || defaultBase !== prevDefaultBase) {
+    setPrevOpen(open)
+    setPrevDefaultBase(defaultBase)
+    if (open) setBase(defaultBase || '')
+  }
 
   return (
     <Dialog

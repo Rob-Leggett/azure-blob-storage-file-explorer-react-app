@@ -10,9 +10,7 @@ jest.mock('@/lib/api/common/azure/storage/blob', () => ({
   normalizePrefix: jest.fn(),
 }))
 
-const { getContainerClient, listPrefix, normalizePrefix } = jest.requireMock(
-  '@/lib/api/common/azure/storage/blob',
-) as {
+const { getContainerClient, listPrefix, normalizePrefix } = jest.requireMock('@/lib/api/common/azure/storage/blob') as {
   getContainerClient: jest.Mock
   listPrefix: jest.Mock
   normalizePrefix: jest.Mock

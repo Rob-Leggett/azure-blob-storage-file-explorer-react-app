@@ -2,11 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  Cloud,
-  LayoutDashboard,
-  FolderCog,
-} from 'lucide-react'
+import { Cloud, LayoutDashboard, FolderCog } from 'lucide-react'
 import { cn } from '@/lib/utils/common/ui/ui-helper'
 import { Button } from '@/components/common/ui/button'
 
@@ -16,10 +12,8 @@ const navItems = [
     title: 'Azure',
     href: '/azure',
     icon: Cloud,
-    children: [
-      { title: 'File Explorer', href: '/azure/file-explorer', icon: FolderCog },
-    ],
-  }
+    children: [{ title: 'File Explorer', href: '/azure/file-explorer', icon: FolderCog }],
+  },
 ]
 
 export function Nav() {

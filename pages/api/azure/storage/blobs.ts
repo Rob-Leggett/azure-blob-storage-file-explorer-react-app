@@ -74,7 +74,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else {
       try {
         res.end()
-      } catch {}
+      } catch {
+        // response already closed
+      }
     }
   }
 }

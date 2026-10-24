@@ -16,3 +16,4 @@ package.json
 tsconfig.json
 
 CHANGELOG.md
+next-env.d.ts

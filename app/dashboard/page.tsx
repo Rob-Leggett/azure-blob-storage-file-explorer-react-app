@@ -11,13 +11,8 @@ export default async function DashboardSSRPage() {
   // Explicitly opt out of any implicit caching for this request
   noStore()
 
-  // Get the user session + access token issued for your API
-  const session = await auth()
-  const accessToken = (session as any)?.accessToken as string | undefined
-  const cacheKey = session?.user?.email ?? 'anon' // or sub/oid if you prefer
+  // Resolve the user session for this request
+  await auth()
 
-
-  return (
-    <DashboardPage />
-  )
+  return <DashboardPage />
 }

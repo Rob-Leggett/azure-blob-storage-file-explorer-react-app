@@ -8,6 +8,11 @@ This project provides a simple file‑explorer UI for Azure Blob Storage, with E
 
 ## 🚀 Getting Started
 
+### Prerequisites
+
+- Node.js 26 (see `.nvmrc` — run `nvm use`)
+- npm 11+
+
 ### 1. Install dependencies
 
 ```bash
@@ -56,21 +61,22 @@ Then open:
 
 ## 📁 Features
 
-- Azure Blob Storage browse, upload, download, delete  
-- Microsoft Entra ID login (NextAuth)  
-- Secure API routes  
-- Tailwind UI  
-- SAS token generation with configurable expiry  
+- Azure Blob Storage browse, upload, download, delete
+- Microsoft Entra ID login (NextAuth)
+- Secure API routes
+- Tailwind UI
+- SAS token generation with configurable expiry
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Next.js 15**  
-- **React**  
-- **Tailwind CSS**  
-- **NextAuth / Entra ID**  
-- **Azure Blob Storage SDK**  
+- **Next.js 16** (Turbopack, `proxy.ts` middleware)
+- **React 19**
+- **Tailwind CSS 4**
+- **NextAuth (Auth.js) v5 / Entra ID**
+- **Azure Blob Storage SDK v12**
+- **TypeScript 6**, ESLint 9 (flat config), Jest 30
 
 ---
 
@@ -81,10 +87,12 @@ npm run build
 npm start
 ```
 
-## 📦 Test
+## 📦 Test & quality checks
 
 ```bash
-npm run test
+npm run lint       # ESLint (flat config, eslint.config.mjs)
+npm run typecheck  # tsc --noEmit
+npm run test       # Jest with coverage
 ```
 
 ---

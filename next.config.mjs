@@ -22,12 +22,6 @@ const API_HEADERS = [
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
-  // NOTE - this is a workaround for an issue with next-auth@5.0.0-beta.25 and next@15.0.0
-  // @see https://github.com/nextauthjs/next-auth/discussions/10058
-  transpilePackages: ['next-auth'],
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: true,
   },

@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import useSWR from 'swr'
 import { Loader2 } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/ui/card'
 import { Button } from '@/components/common/ui/button'
 import { Input } from '@/components/common/ui/input'
 import { useToast } from '@/hooks/common/use-toast'
@@ -15,11 +15,10 @@ import type { FileRow, Folder } from '@/lib/types/common/azure/storage/blobs'
 
 type ListPayload = { prefix: string; folders: Folder[]; files: FileRow[] }
 
-type VersioningStatus = { enabled: boolean }
-
 const listFetcher = async (url: string): Promise<ListPayload> => {
   const res = await fetch(url, { cache: 'no-store' })
   if (!res.ok) throw new Error(`List failed: ${res.status}`)
+
   return res.json()
 }
 
@@ -62,9 +61,11 @@ export default function FileExplorerPage() {
   )
 
   // Clear selection when changing folders
-  useEffect(() => {
+  const [selectionPrefix, setSelectionPrefix] = useState(prefix)
+  if (selectionPrefix !== prefix) {
+    setSelectionPrefix(prefix)
     setSelected(new Set())
-  }, [prefix])
+  }
 
   const folders = data?.folders ?? []
   const files = data?.files ?? []
@@ -168,6 +169,7 @@ export default function FileExplorerPage() {
     if (!res.ok) {
       const detail = await res.text().catch(() => '')
       toast({ title: 'Rename failed', description: `${res.status} ${detail}`, variant: 'destructive' })
+
       return
     }
     toast({ title: 'Renamed', description: `${row.name} → ${newPath}` })

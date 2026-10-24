@@ -177,7 +177,7 @@ export function FileTable({
 
                         <Button asChild variant="outline" size="sm" className="text-xs inline-flex items-center gap-1">
                           <a
-                            href={`/api/azure/storage/blobs/${row.path}?t=${Date.now()}`}
+                            href={`/api/azure/storage/blobs/${row.path}?t=${encodeURIComponent(row.lastModified)}`}
                             target="_blank"
                             rel="noreferrer"
                           >

@@ -10,6 +10,7 @@ export const config = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET')
+
     return res.status(405).json({ error: 'Method Not Allowed' })
   }
 
@@ -22,10 +23,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const versions = await listBlobVersions(fullPath)
+
     return res.status(200).json({ versions })
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error('List versions error:', err)
+
     return res.status(500).json({ error: 'Failed to list versions' })
   }
 }

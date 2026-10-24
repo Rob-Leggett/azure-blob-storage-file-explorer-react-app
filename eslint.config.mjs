@@ -1,35 +1,26 @@
-import { FlatCompat } from '@eslint/eslintrc'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import js from '@eslint/js'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
+import jest from 'eslint-plugin-jest'
+import prettierRecommended from 'eslint-plugin-prettier/recommended'
+import globals from 'globals'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: {
-    rules: {},
+export default defineConfig([
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'dist/**', 'coverage/**', 'next-env.d.ts']),
+  js.configs.recommended,
+  ...nextCoreWebVitals,
+  prettierRecommended,
+  {
+    files: ['tests/**', '**/*.test.{ts,tsx,js}', 'jest.setup.ts'],
+    ...jest.configs['flat/recommended'],
   },
-})
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default [
-  ...compat.extends(
-    'eslint:recommended',
-    'next/core-web-vitals',
-    'plugin:prettier/recommended',
-    'plugin:jest/recommended',
-  ),
   {
     languageOptions: {
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
-        browser: 'readonly',
-        node: 'readonly',
-        jest: 'readonly',
+        ...globals.browser,
+        ...globals.node,
         React: 'readonly',
       },
     },
@@ -55,4 +46,14 @@ export default [
       ],
     },
   },
-]
+  {
+    files: ['**/*.{ts,tsx}'],
+    rules: {
+      // TypeScript performs these checks; the core rules misreport types and ambient globals
+      'no-undef': 'off',
+      'no-redeclare': 'off',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    },
+  },
+])

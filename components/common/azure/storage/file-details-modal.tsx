@@ -29,6 +29,7 @@ type VersionsResponse = {
 const fetchJson = async <T,>(url: string): Promise<T> => {
   const res = await fetch(url, { cache: 'no-store' })
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
+
   return (await res.json()) as T
 }
 
@@ -68,6 +69,7 @@ export function FileDetailsModal({ open, onOpenChange, file }: Props) {
     const res = await fetch(url)
     if (!res.ok) {
       console.error('Download failed', res.status, res.statusText)
+
       return
     }
     const blob = await res.blob()

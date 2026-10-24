@@ -1,6 +1,5 @@
 import NextAuth, { type NextAuthConfig } from 'next-auth'
 import MicrosoftEntraID from 'next-auth/providers/microsoft-entra-id'
-import { decodeJwtPayloadClient } from '@/lib/utils/common/auth/auth-helper'
 import { NextResponse } from 'next/server'
 
 const tenant = process.env.AZURE_TENANT_ID!
@@ -55,6 +54,7 @@ const config = {
       if (!isLoggedIn) {
         const loginUrl = new URL('/auth/login', origin)
         loginUrl.searchParams.set('callbackUrl', href)
+
         return NextResponse.redirect(loginUrl)
       }
 
@@ -95,6 +95,7 @@ const config = {
       if (url.startsWith('/')) return `${baseUrl}${url}`
       if (new URL(url).origin === baseUrl) return url
       const fallbackReturn = process.env.AZURE_LOGOUT_REDIRECT_URI || baseUrl
+
       return `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/logout?post_logout_redirect_uri=${encodeURIComponent(
         fallbackReturn,
       )}`
